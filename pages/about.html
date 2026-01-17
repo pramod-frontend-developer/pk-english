@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us - Smart Translator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background: #f8f9fa;  }
+        .card { border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    </style>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body class="bg-light">
+     <div id="navbar"></div>
+
+
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card p-5">
+                    <h2 class="text-center mb-4">About Us</h2>
+                    <p>Welcome to <strong>Smart Translator</strong>, developed by <strong>P K</strong>. Humara maqsad hai language barriers ko khatam karna aur translation ko aasan banana.</p>
+                    <p>Humari website par aapko milta hai:</p>
+                    <ul>
+                        <li>English to Hindi & Hindi to English Translation.</li>
+                        <li>Smart Voice Recognition (Mic se bol kar translate karein).</li>
+                        <li>Click-to-Speak feature jo aapki pronunciation sudharne mein madad karta hai.</li>
+                    </ul>
+                    <p>Hum hamesha apne tools ko behtar banane ki koshish karte hain taaki aapko best experience mile.</p>
+                    <div class="text-center mt-4">
+                        <a href="index.html" class="btn btn-primary">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <!-- ===== Footer Load ===== -->
+<div id="footer"></div>
+
+    <script>
+        /* Navbar Load */
+fetch("navbar.html")
+.then(res => res.text())
+.then(data => document.getElementById("navbar").innerHTML = data);
+
+/* Footer Load */
+fetch("footer.html")
+.then(res => res.text())
+.then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-100">
+    <!-- ===== Navbar ===== -->
+    <div id="navbar"></div>
+
+    <!-- ===== Welcome ===== -->
+    <div class="bg-warning text-center py-2 fs-3 fw-bold">Welcome</div>
+
+    <!-- ===== Main Content ===== -->
+    <main class="container my-4 flex-grow-1">
+      <!-- Ad Banner -->
+      <div class="flex justify-center mb-4">
+        <a
+          href="https://www.effectivegatecpm.com/ynr4zqfyc?key=47c7532215e22f2958124a99aa5ab73e"
+          target="_blank"
+          rel="nofollow"
+        >
+          <img
+            class="img-fluid"
+            src="https://landings-cdn.adsterratech.com/referralBanners/png/728%20x%2090%20px.png"
+            alt="banner"
+          />
+        </a>
+      </div>
+
+      <!-- Buttons -->
+      <div class="row g-3 text-center">
+        <div class="col-12 col-md-4">
+          <button
+            class="btn btn-primary w-100 py-3"
+            onclick="handleButton(this, 'pages/EnglishToHindiTranslater.html')"
+          >
+            English To Hindi
+          </button>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <button
+            class="btn btn-success w-100 py-3"
+            onclick="handleButton(this, 'pages/HindiToEnglish.html')"
+          >
+            Hindi To English
+          </button>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <button
+            class="btn btn-dark w-100 py-3"
+            onclick="handleButton(this, 'pages/withAudio.html')"
+          >
+            With Audio
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <div id="footer"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      /* Navbar Load */
+      fetch("pages/navbar.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("navbar").innerHTML = data));
+
+      /* Footer Load */
+      fetch("pages/footer.html")
+        .then((res) => res.text())
+        .then((data) => (document.getElementById("footer").innerHTML = data));
+
+      const adLink =
+        "https://www.effectivegatecpm.com/ynr4zqfyc?key=47c7532215e22f2958124a99aa5ab73e";
+
+      function handleButton(button, pageUrl) {
+        if (button.dataset.ready === "true") {
+          window.location.href = pageUrl;
+          return;
+        }
+
+        window.open(adLink, "_blank");
+
+        let timeLeft = 5;
+        const originalText = button.innerText;
+        button.disabled = true;
+
+        const timer = setInterval(() => {
+          button.innerText = `Please wait ${timeLeft}s`;
+          timeLeft--;
+
+          if (timeLeft < 0) {
+            clearInterval(timer);
+            button.disabled = false;
+            button.innerText = originalText;
+            button.dataset.ready = "true";
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

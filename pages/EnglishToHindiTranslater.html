@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>English to Hindi Translator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+    .container {
+      padding: 20px;
+      max-width: 600px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    button:disabled {
+      background-color: #999;
+      cursor: not-allowed;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+    .result p {
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>English to Hindi Translator</h2>
+
+    <textarea
+      id="inputText"
+      rows="5"
+      placeholder="English mein likhein..."
+    ></textarea>
+
+    <button id="translateBtn" onclick="translateText()">
+      Translate to Hindi
+    </button>
+
+    <div class="result">
+      <strong>Hindi Translation:</strong>
+      <p id="translatedText"></p>
+    </div>
+  </div>
+
+  <script>
+    async function translateText() {
+      const inputText = document.getElementById("inputText").value;
+      const translatedTextEl = document.getElementById("translatedText");
+      const button = document.getElementById("translateBtn");
+
+      if (!inputText) return;
+
+      button.disabled = true;
+      button.innerText = "Translating...";
+      translatedTextEl.innerText = "";
+
+      try {
+        const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(inputText)}&langpair=en|hi`;
+        const response = await fetch(url);
+        const data = await response.json();
+        translatedTextEl.innerText = data.responseData.translatedText;
+      } catch (error) {
+        console.error("Translation error:", error);
+        translatedTextEl.innerText = "Error: Could not translate.";
+      } finally {
+        button.disabled = false;
+        button.innerText = "Translate to Hindi";
+      }
+    }
+  </script>
+
+</body>
+</html>
