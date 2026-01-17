@@ -85,15 +85,24 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      /* Navbar Load */
-      fetch("pages/navbar.html")
-        .then((res) => res.text())
-        .then((data) => (document.getElementById("navbar").innerHTML = data));
+     /* Navbar Load */
+fetch("pages/navbar.html")
+  .then(res => {
+    if(!res.ok) throw new Error("Navbar not found");
+    return res.text();
+  })
+  .then(data => {
+    document.getElementById("navbar").innerHTML = data;
+    // Bootstrap ko batana padta hai ki naya content aaya hai
+    var navScripts = document.querySelectorAll('[data-bs-toggle="collapse"]');
+    navScripts.forEach(el => new bootstrap.Collapse(el, {toggle: false}));
+  })
+  .catch(err => console.error(err));
 
-      /* Footer Load */
-      fetch("pages/footer.html")
-        .then((res) => res.text())
-        .then((data) => (document.getElementById("footer").innerHTML = data));
+/* Footer Load */
+fetch("pages/footer.html")
+  .then(res => res.text())
+  .then(data => document.getElementById("footer").innerHTML = data);
 
       const adLink =
         "https://www.effectivegatecpm.com/ynr4zqfyc?key=47c7532215e22f2958124a99aa5ab73e";
